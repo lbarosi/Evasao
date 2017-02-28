@@ -123,22 +123,268 @@ $(document).ready(function () {
 <h1><strong>Estudo de Indicadores de Evasao</strong></h1>
 <div id="objetivo" class="section level2">
 <h2>Objetivo</h2>
+<ol style="list-style-type: decimal">
+<li>A Evasão é um fenômeno generalizado nas IES.</li>
+<li>Ainda que se reconheça que a evasão é um fenômeno multifatorial que está relacionado primariamente com uma escolha individual do aluno, ela representa uma preocupação para a gestão acadêmica, quer seja pelo que representa nas fontes de financiamento, quer seja pela função social que as IES devem cumprir.</li>
+<li>O conhecimento prévio da possibilidade de evasão de um aluno pode permitir ações específicas, no nível do curso, que possam ajudar a mitigar o problema, nos casos em que essa ação esteja em poder da IES.</li>
+<li>Não há nenhuma forma a prioristica para determinar se a evasão acadêmica pode ser mitigada ou não.</li>
+<li>Existe uma crença generalizada de que a evasão pode ser prevista, com um número suficiente de dados.</li>
+<li>Resultados preliminares da literatura permitem acreditar que sejas possível focar em um conjunto de indicadores acadêmicos como preditores, sem a necessidade de questionários amples de variáveis de natureza mais subjetiva.</li>
+</ol>
 </div>
 <div id="hipoteses-principais" class="section level2">
 <h2>Hipóteses Principais</h2>
+<ol style="list-style-type: decimal">
+<li>O conceito de evasão é bastante amplo e é fundamental que um trabalho deixe claro qual é a definição de trabalho.</li>
+<li>O conceito de evasão considerado é o conceito de <strong>evasão de curso</strong>, também chamado de microevasão na literatura. O aluno é considerado evadido se não concluiu o seu curso, independentemente do tempo que levou para isso.</li>
+<li>O foco do trabalho é o aluno individual, não havendo preocupação da previsão de uma taxa de evasão para o curso específico. Dessa forma não é necesário que se adote uma das definições específicas de evasão de curso existentes na literatura.</li>
+<li>A evasão está relacionada com a interação do aluno com o curso/instituição, sendo um ato em que o aluno é protagonista. Nesse sentido a evasão é modelada de maneira semelhante ao modelo de suicídio de Durkheim, com modelos existentes bastante amplos e descritivos como os modelos de Tinto, Bean e Cabrera.</li>
+<li>Nesse sentido, podemos considerar a evasão como composta por motivos econômicos, vocacionais ou acadêmicos.</li>
+<li>Consideramos evasão a decisão do aluno em prosseguir seus estudos no mesmo curso. Essa escolha é uma escolha racional repetida a cada semestre, tendo diversos motivadores. Supomos que os diversos motivadores não ocorrem instantaneamente, sendo uma avaliação racional ao longo do tempo, que imprime assinaturas específicas no desempenho acadêmico do aluno que podem ser estudadas, classificadas, e previstas.</li>
+<li>Parece possível diferenciar a evasão em tipos com características diversas entre si.</li>
+<li>É importante considerar que os alunos percorrem um curso em que as características de desempenho acadêmico sejam prioritariamente devidas ao seu esforço pessoal. Ou seja, a distribuição de notas de cada disciplina ao longo do tempo deve ser uma distribuição de probabilidade fixa, para que possamos considerar que os alunos percorrem o mesmo curso.</li>
+<li>Cada curso contém um grande número de disciplinas e parece que podemos assumir que as decisões dos alunos apresentam características amplas que podem ser modeladas para todos os cursos simultaneamente, ainda que seja importante observar se a modelagem considerando o tipo de curso possa trazer elementos novos.</li>
+<li>A decisão de evasão é uma decisão refletida que depende da histórica acadêmica do aluno, mas indicadores acadêmicos referentes a um único período podem captar dados suficientes para a análise da evasão, a medida em que refletem os dados do histórico do aluno.</li>
+</ol>
+</div>
+<div id="tipos-de-evasao" class="section level2">
+<h2>Tipos de Evasão</h2>
+<ol style="list-style-type: decimal">
+<li><strong>Evasão do Primeiro Período</strong>: Não há motivo para acreditar que essa evasão tenha uma modelagem muito diferente das outras no que diz respeito a escolha de um agente racional, contudo existem muito poucas informações acadêmicas para esses alunos e ela é numericamente superior aos outros períodos. Considerar a evasão de primeiro período pode tornar a aprendizagem de um sistema mais difícil e enviesada com o tempo de curso, caso esse seja um classificador.</li>
+<li><strong>Evasão aleatória</strong>: Algumas formas de evasão claramente não se enquadram no esquema de evasão descrito acima, porque dependem de ainda outros fatores, como a evasão por falecimento e a evasão por medida judicial.</li>
+<li><strong>Evasão por desistência</strong>: Uma forma de evasão que considera o desejo do aluno em sair de seu curso, quer pela desistência voluntária de seu vínculo, pelo abandono do seu curso ou por mobilidade para outra IES ou Curso.</li>
+<li><strong>Evasão por Motivos Acadêmicos</strong>: as regras das instituições apresentam conjuntos de restrições que os alunos devem cumprir para manter seus vínculos com a Universidade. Notadamente, na caso da UFCG, os alunos podem ser desligados ao reprovar por três vezes na mesma disciplina ou por atingir o tempo máximo do curso.</li>
+</ol>
 </div>
 <div id="investigacoes-preliminares" class="section level2">
 <h2>Investigações Preliminares</h2>
+<ol style="list-style-type: decimal">
+<li>Escolha do recorte da base de dados</li>
+<li>Análise descritiva da base de dados</li>
+<li>Análise preliminar do comportamento das diferentes evasões</li>
+<li>Teste das distribuições de notas das disciplinas ao longo do tempo</li>
+<li>Escolha dos classificadores</li>
+<li>Implementação de modelos</li>
+<li>Estudos adicionais</li>
+</ol>
+</div>
+<div id="preparacao-dos-dados" class="section level2">
+<h2>Preparação dos Dados</h2>
+<p>Considerando a natureza do objeto de estudo e a natureza do banco de dados disponível, é necessário construir um recorte adequado dos dados.</p>
+<ul>
+<li>Considerar os dados a partir do período 2010.1, em que a base de dados é mais confiável e possui informações robustas sobre a maioria das variáveis.</li>
+<li>Considerar apenas as formas de ingresso originárias ENEM e SiSU. As outras formas de ingresso tem dados acadêmicos não comparáveis entre si, como o reingresso, o PSTV, reopção de curso…</li>
+<li>Manter a informação acerca das cotas. Contudo a análise com a variável referente a cotas tem um período mais curto de informações, podendo ser um refinamento do modelo.</li>
+<li>Manter a nota de ingresso que corresponde a Nota ENEM, equiparável em todo o período analisado.</li>
+<li>Manter a variável NATURALIDADE, ainda que se deva levar em conta que existem algumas dificuldades com essa informação no período SiSU. Considerar uma variável auxiliar como a distância do município de naturalidade ao campus em que o aluno realiza seu curso pode ser relevante para a decisão de evasão ou não.</li>
+<li>A base de dados contém informações de Matrícula e CPF, mas estamos querendo estudar o comportamento individual, portanto o indicador principal deve ser o CPF.</li>
+<li>Uma determinada matrícula pode ter interrupções e reingressos de diversas naturezas. É necessário reconstruir a história de cada CPF com as informações de ingresso originário e saída definitiva da IES afim de determinar o tempo total na instituição e criar um registro do histórico acadêmico do aluno em todos os períodos em que ficou ativo, cruzando os dados da tabela aluno com os dados das tabelas de desempenho.</li>
+<li>Na literatura internacional, o intervalo de até dois anos em que o aluno é desligado e retorna para a IES é considerado como um período contínuo. É seguro dizer que muitos alunos tem um vínculo continuado de um período ou dois para outro, mas não há dados sobre períodos mais longos. As variáveis tempo de interrupção e número de interrupções parecem ser importantes.</li>
+<li>A evasão deve ser classificada em tipos com possível comportamente diferenciado:
+<ul>
+<li>Evasão inicial: ocorre no primeiro período. É mais frequente e seguramente é difícil conseguir modelar seu comportamento pela falta de dados acadêmicos.</li>
+<li>Evasão por abandono: Ocorre, majoritariamente por decisão do aluno, que pode desistir formalmente, não formalizar matrícula no período seguinte ou abandonar as aulas e sewr reprovado por falta em todas as disciplinas do período. É importante ressalvar que a evasão por reprovação em todas as disciplinas próxima ao final do curso é um motivo acadêmico, comumente relacionado com uma interrupção, mais do que com uma evasão, contudo a reprovação por falta em um conjunto de disciplinas on início do curso representa frequentemente um abandono. Não é necessário distinguir esses dois casos se a correção para as interrupções for realizada adequadamente.</li>
+<li>Evasão por motivação acadêmica: Apenas duas formas causam o desligamento do aluno por motivação acadêmica nesse contexto (excluída a reprovação por falta que é considerada abandono): o atingimento do tempo máximo para o curso e a reprovação em uma mesma disciplina por 3 vezes. Para ambos os casos existe uma quantidade considerável de recursos disponíveis para os alunos. A evasão dessa natureza só pode ser mensurada adequadamente com a correção para interrupções. (Que pode, em última análise, ser considerada uma medida institucional para a mitigação dessa forma de evasão)</li>
+<li>Evasão Imprevisível: evasões por falecimento, decisão judicial, término de convênio, são condições determinadas por fatores totalmente independentes do aluno e não é razoável supor que possam ser modelados com base nos indicadores acadêmicos.</li>
+</ul></li>
+</ul>
 </div>
 <div id="rscripts" class="section level2">
 <h2>Rscripts</h2>
+<blockquote>
+<p><strong>digest-tables.R</strong> está presente no diretório de scripts R apenas para referência acerca de quais manipulações estão sendo realizadas nos arquivos de dados para o mascaramento das identidades dos sujeitos.</p>
+</blockquote>
+<blockquote>
+<p><strong>evasao-basedata.R</strong> prepara o recorte de dados descrito acima.</p>
+</blockquote>
 </div>
 <div id="conteudo-em-dados" class="section level2">
 <h2>Conteúdo em Dados</h2>
+<div id="cursos" class="section level3">
+<h3>Cursos</h3>
+<div id="descricao-das-variaveis" class="section level4">
+<h4><strong>Descrição das variáveis</strong></h4>
+<table style="width:99%;">
+<colgroup>
+<col width="8%"></col>
+<col width="90%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nome</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CURSO</td>
+<td>Código Curso UFCG</td>
+</tr>
+<tr class="even">
+<td>ÁREA DO CONHECIMENTO</td>
+<td>Humanas/Exatas/Biológicas</td>
+</tr>
+<tr class="odd">
+<td>CAMPUS</td>
+<td>(1:7)</td>
+</tr>
+<tr class="even">
+<td>CENTRO</td>
+<td>(11, 12, 13, 14, 15, 21, 31, 41, 51, 71, 91)</td>
+</tr>
+<tr class="odd">
+<td>SIGLA</td>
+<td>(CCT, CCBS, CH, CEEI, CTRN, CFP, CSTR, CES, CDSA, CCTA)</td>
+</tr>
+<tr class="even">
+<td>Curso</td>
+<td>Nome do Curso por extenso</td>
+</tr>
+<tr class="odd">
+<td>turno</td>
+<td>(M, V, N, D)</td>
+</tr>
+<tr class="even">
+<td>cod. EMEC</td>
+<td>Código oficial do MEC agrega cursos diurno e noturno.</td>
+</tr>
+<tr class="odd">
+<td>Situação EMEC</td>
+<td>Ativo (Com entrada no vestibular), Em Extinção (com alunos as sem entrada no vestibular), Extinto (sem alunos, sem entrada)</td>
+</tr>
+<tr class="even">
+<td>Currículo</td>
+<td>ano do currículo ativo no curso</td>
+</tr>
+<tr class="odd">
+<td>CH</td>
+<td>Carga horária mínima do curso</td>
+</tr>
+<tr class="even">
+<td>Tempo mínimo</td>
+<td>Tempo do curso em anos</td>
+</tr>
+<tr class="odd">
+<td>VAGAS1</td>
+<td>Entrada no Primeiro semestre</td>
+</tr>
+<tr class="even">
+<td>VAGAS2</td>
+<td>Entrada no Segundo Semestre</td>
+</tr>
+<tr class="odd">
+<td>VAGAS</td>
+<td>VAGAS1 + VAGAS2</td>
+</tr>
+<tr class="even">
+<td>PG</td>
+<td>Fatores para a comissão de modelos de OCC</td>
+</tr>
+<tr class="odd">
+<td>FATOR</td>
+<td>Fatores para a comissão de modelos de OCC</td>
+</tr>
+<tr class="even">
+<td>DURACAO</td>
+<td>Fatores para a comissão de modelos de OCC</td>
+</tr>
+<tr class="odd">
+<td>BFS</td>
+<td>Fatores para a comissão de modelos de OCC</td>
+</tr>
+<tr class="even">
+<td>BT</td>
+<td>Fatores para a comissão de modelos de OCC</td>
+</tr>
+<tr class="odd">
+<td>NOVO</td>
+<td>Fatores para a comissão de modelos de OCC</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div id="alunos" class="section level3">
 <h3>Alunos</h3>
 <p>Arquivo CSV com o vínculo de alunos de 2002.1 a 2016.1, incluindo forma de ingresso, forma de evasão.</p>
-<div id="descricao-das-variaveis" class="section level4">
+<div id="descricao-das-variaveis-1" class="section level4">
+<h4><strong>Descrição das variáveis</strong></h4>
+<table style="width:88%;">
+<colgroup>
+<col width="8%"></col>
+<col width="79%"></col>
+</colgroup>
+<thead>
+<tr class="header">
+<th>Nome</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>PERIODO_EVASAO</td>
+<td>Período em que o aluno foi desligado da UFCG.</td>
+</tr>
+<tr class="even">
+<td>CPF</td>
+<td>HAS md5 do CPF do aluno</td>
+</tr>
+<tr class="odd">
+<td>MATRÍCULA</td>
+<td>HASH md5 do número de matrícula do aluno</td>
+</tr>
+<tr class="even">
+<td>CURSO</td>
+<td>código UFCG do curso de aluno</td>
+</tr>
+<tr class="odd">
+<td>PERIODO_INGRESSO</td>
+<td>período de ingresso na UFCG</td>
+</tr>
+<tr class="even">
+<td>COD_INGRESSO</td>
+<td>código descritor da forma de ingresso do aluno</td>
+</tr>
+<tr class="odd">
+<td>COD_EVASAO</td>
+<td>código descritor da forma de ingresso do aluno</td>
+</tr>
+<tr class="even">
+<td>MEDIA_INGRESSO</td>
+<td>média obtida no processo seletivo de entrada. Pode representar Vestibular, ENEM, Prova de ingresso de processos seletivos de formas derivadas.</td>
+</tr>
+<tr class="odd">
+<td>NATURALIDADE</td>
+<td>Município de nascimento. Reliable na época ENEM apenas</td>
+</tr>
+<tr class="even">
+<td>ESTADO</td>
+<td>Estado de origem é reliable apenas na época ENEM</td>
+</tr>
+<tr class="odd">
+<td>TIPO_ENSINO_MEDIO</td>
+<td>Apenas a partir do ENEM</td>
+</tr>
+<tr class="even">
+<td>COTISTA</td>
+<td>Apenas a partir da lei de cotas</td>
+</tr>
+<tr class="odd">
+<td>NASCIMENTO</td>
+<td>Data de nascimento</td>
+</tr>
+<tr class="even">
+<td>SEXO</td>
+<td>M ou F</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="rendimento" class="section level3">
+<h3>Rendimento</h3>
+<p>Arquivos por centro e por período com as informações de desempenho acadêmicas de todos os alunos ativos no período indicado.</p>
+<div id="descricao-das-variaveis-2" class="section level4">
 <h4><strong>Descrição das variáveis</strong></h4>
 <table>
 <thead>
@@ -149,18 +395,315 @@ $(document).ready(function () {
 </thead>
 <tbody>
 <tr class="odd">
-<td>MATRÍCULA</td>
-<td>TESTE</td>
+<td>Cód..Curso</td>
+<td>Código Curso UFCG</td>
+</tr>
+<tr class="even">
+<td>Curso</td>
+<td>Nome do Curso UFCG</td>
+</tr>
+<tr class="odd">
+<td>Aluno</td>
+<td>HASH md5 do número de matrícula do aluno</td>
+</tr>
+<tr class="even">
+<td>CH.Integralizada</td>
+<td>Carga horária integralizada até o período do arquivo</td>
+</tr>
+<tr class="odd">
+<td>Faixa.CH..</td>
+<td>Desnecessário</td>
+</tr>
+<tr class="even">
+<td>CRA</td>
+<td>Coeficiente de Rendimento acadêmico CRA no período do arquivo.</td>
+</tr>
+<tr class="odd">
+<td>Faixa.CRA</td>
+<td>Desnecessário</td>
+</tr>
+<tr class="even">
+<td>Semestres</td>
+<td>Número de semestres integralizados até o período do arquivo.</td>
+</tr>
+<tr class="odd">
+<td>Anos</td>
+<td>NÃO UTILIZAR</td>
+</tr>
+<tr class="even">
+<td>MC</td>
+<td>Média de conclusão para o semestre do arquivo</td>
+</tr>
+<tr class="odd">
+<td>MCN</td>
+<td>NÃO UTILIZAR</td>
+</tr>
+<tr class="even">
+<td>IEA</td>
+<td>IEA para o semestre do arquivo</td>
+</tr>
+<tr class="odd">
+<td>IEAN</td>
+<td>NÃO UTILIZAR</td>
+</tr>
+<tr class="even">
+<td>Amostra</td>
+<td>NÃO UTILIZAR</td>
+</tr>
+</tbody>
+</table>
+<hr />
+</div>
+</div>
+<div id="codificacoes" class="section level3">
+<h3>Codificações</h3>
+<div id="formas-de-ingresso" class="section level4">
+<h4>Formas de Ingresso</h4>
+<table>
+<thead>
+<tr class="header">
+<th>COD</th>
+<th>DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>VESTIBULAR</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>PSTV</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>DECISÃO CSE</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>GRADUADO</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>TRANSFERÊNCIA EX-OFFICIO</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>JUDICIAL</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>REINGRESSO</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>MOBILIDADE</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>MOBILIDADE INTERNACIONAL</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>ENEM (a partir de 2010.1)</td>
+</tr>
+<tr class="odd">
+<td>18</td>
+<td>SISU (a partir de 2014.2)</td>
+</tr>
+<tr class="even">
+<td>19</td>
+<td>NOVO CURRÍCULO</td>
+</tr>
+<tr class="odd">
+<td>20</td>
+<td>ADMINISTRATIVO</td>
 </tr>
 </tbody>
 </table>
 </div>
+<div id="formas-de-evasao" class="section level4">
+<h4>Formas de Evasão</h4>
+<table>
+<thead>
+<tr class="header">
+<th>COD</th>
+<th>DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>GRADUADO</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>TRANSFERÊNCIA PARA OUTRA IES</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>FALECIMENTO</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>CANCELAMENTO POR ABANDONO</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>CANCELAMENTO (JUBILADO)</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>CANCELADO - MUDANÇA DE CURSO</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>CANCELADO - DECISÃO JUDICIAL</td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>CANCELADO - SOLICITAÇÃO DO ALUNO</td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>SUSPENSÃO TEMPORÁRIA</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>CONCLUÍDO NÃO COLOU GRAU</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>CANCELAMENTO - NÃO CUMPRIMENTO PEC</td>
+</tr>
+<tr class="even">
+<td>12</td>
+<td>CANCELADO - NOVO VESTIBULAR</td>
+</tr>
+<tr class="odd">
+<td>13</td>
+<td>CUMPRIMENTO CONVÊNIO</td>
+</tr>
+<tr class="even">
+<td>14</td>
+<td>NOVO REGIMENTO (MUDANÇA DE CURSO)</td>
+</tr>
+<tr class="odd">
+<td>15</td>
+<td>NÃO COMPARECEU AO CADASTRO</td>
+</tr>
+<tr class="even">
+<td>16</td>
+<td>REMANEJADO CURSO OU PERÍODO</td>
+</tr>
+<tr class="odd">
+<td>17</td>
+<td>NÃO COMPARECEU AO REMANEJAMENTO</td>
+</tr>
+<tr class="even">
+<td>18</td>
+<td>NÃO COMPARECEU À MATRÍCULA - FERA</td>
+</tr>
+<tr class="odd">
+<td>19</td>
+<td>TÉMINO DO INTERCÂMBIO</td>
+</tr>
+<tr class="even">
+<td>20</td>
+<td>GRADUADO JUDICIAL</td>
+</tr>
+<tr class="odd">
+<td>21</td>
+<td>CANCELADO - REPROVAÇÃO POR FALTA</td>
+</tr>
+<tr class="even">
+<td>22</td>
+<td>CANCELADO - R3X</td>
+</tr>
+<tr class="odd">
+<td>23</td>
+<td>SUSPENSO - DÉBITO BIBLIOTECA</td>
+</tr>
+<tr class="even">
+<td>24</td>
+<td>CANCELAMENTO - NOVO CURRÍCULO</td>
+</tr>
+<tr class="odd">
+<td>25</td>
+<td>SOLICITOU DESVÍNCULO SEM MATRÍCULA</td>
+</tr>
+<tr class="even">
+<td>50</td>
+<td>AGUARDANDO CADASTRAMENTO</td>
+</tr>
+</tbody>
+</table>
 </div>
-<div id="rendimento" class="section level3">
-<h3>Rendimento</h3>
-<p>Arquivos por centro e por período com as informações de desempenho acadêmicas de todos os alunos ativos no período indicado.</p>
-<div id="descricao-das-variaveis-1" class="section level4">
-<h4><strong>Descrição das variáveis</strong></h4>
+<div id="tipo-de-ensino-medio" class="section level4">
+<h4>TIPO DE ENSINO MÉDIO</h4>
+<table>
+<thead>
+<tr class="header">
+<th>COD</th>
+<th>DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>PRIVADA</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>PÚBLICA</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>MAJORITARIAMENTE PRIVADA</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>MAJORITARIAMENTE PÚBLICA</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>PROFISSIONALIZANTE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="cotas-a-partir-de-2014.2" class="section level4">
+<h4>COTAS ( a partir de 2014.2 )</h4>
+<table>
+<thead>
+<tr class="header">
+<th>COD</th>
+<th>DESCRIÇÃO</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NA</td>
+<td>LIVRE</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>RENDA &lt;1,5SM + APPI</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>RENDA &lt;1,5SM + NAPPI</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>RENDA &gt;1,5SM + APPI</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>RENDA &gt;1,5SM + NAPPI</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>

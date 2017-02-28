@@ -39,7 +39,7 @@ for (i in c(1:n)){
     getfiles$Aluno <- sapply(getfiles$Aluno, digest, algo = "md5")
     nome <- substr(files[[i]],39,nchar(files[[i]]))
     nome <- paste("../DADOS/Rendimento/",nome, sep = "")
-    nome %<>% substr(.,1,nchar(.)-4) %>% paste(.,"csv",sep="")
+    nome %<>% substr(.,1,nchar(.)-4) %>% paste(.,".csv",sep="")
     
     write.csv(as.data.frame(getfiles), nome, row.names = FALSE)
     cat(paste("\n", i,"/",n," HASH disponível: ", nome, "\n", sep = ""))
