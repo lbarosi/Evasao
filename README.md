@@ -63,6 +63,8 @@ Considerando a natureza do objeto de estudo e a natureza do banco de dados dispo
 > **digest-tables.R** está presente no diretório de scripts R apenas para referência acerca de quais manipulações estão sendo realizadas nos arquivos de dados para o mascaramento das identidades dos sujeitos.
 
 > **evasao-basedata.R** prepara o recorte de dados descrito acima.
+Feito para vínculos de alunos
+TO-DO: Desempenho dos alunos por semestre em cada vínculo
 
 ## Conteúdo em Dados
 
