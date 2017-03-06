@@ -45,8 +45,6 @@ Alunos            <- read.csv("../DADOS/Alunos/Alunos.csv")
 
 Alunos$CPF        %<>% as.character(as.character())
 Alunos$MATRÍCULA  %<>% as.character(as.character())
-#Alunos$CPF        %<>% mpfr(. , base = 16)
-#Alunos$MATRÍCULA  %<>% mpfr(. , base = 16)
 
 AlunosUnicos      <- Alunos %>% filter(., PERIODO_INGRESSO >= PERIODO, COD_EVASAO %in% Evasoes &
                                 COD_INGRESSO %in% INGRESSO) %>% 
@@ -186,7 +184,7 @@ DadosAlunos <- function(df){
   
 }
 
-AlunosC     <- DadosAlunos(AlunosUnicos$CPF[800:10000])
+AlunosC     <- DadosAlunos(AlunosUnicos$CPF)
 AlunosCorreto  <- AlunosC %>% filter(., ingressos >= PERIODO & coding %in% INGRESSO & codevad %in% Evasoes ) 
 
 AlunosCorreto$status <- ifelse( AlunosCorreto$codevad %in% Ev.academica, 
@@ -197,7 +195,11 @@ AlunosCorreto$status <- ifelse( AlunosCorreto$codevad %in% Ev.academica,
                                                 "desistência",
                                                 "ativos")))
 AlunosCorreto$duracao <- diffPeriodo(AlunosCorreto$evasões, AlunosCorreto$ingressos)
+#'Evasão por reprovação por falta é desistência, mas é registrada no período seguinte.
+AlunosCorreto$duracao <- ifelse(AlunosCorreto$codevad == 21, AlunosCorreto$duracao - 1, AlunosCorreto$duracao)
 AlunosCorreto$duracao <- ifelse(AlunosCorreto$duracao < 0, 0, AlunosCorreto$duracao)
+
+
 
 write.csv(AlunosCorreto, file = "../DADOS/Alunos/Alunoscorrigidos.csv", row.names = TRUE)
 #######################################
@@ -205,9 +207,8 @@ write.csv(AlunosCorreto, file = "../DADOS/Alunos/Alunoscorrigidos.csv", row.name
 fim <- Sys.time()
 fim-inicio
 
-#Em woland Time difference of 1.349315 mins
+#Em woland Time difference of 4.077025 mins
 
 #Limpando
 rm(AlunosC, AlunosUnicos, Alunos)
-#####################################
-# Preparando sequência de desempenho por alunos.
+

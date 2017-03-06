@@ -1,0 +1,27 @@
+---
+title: "Evasão - Visão Geral"
+author: "Luciano Barosi de Lemos"
+date: "6 de março de 2017"
+output: html_document
+---
+
+```{r echo=FALSE, results='hide', warning=FALSE, message=FALSE}
+source("./Rscripts/grafpreliminar.R")
+```
+
+# Uma primeira visão sobre a evasão
+
+O script evasao-basedara.R produz o arquivo AlunosCorrigidos.csv em ~/DADOS/Alunos, com informações sobre a duração do vínculo dos alunos da base de dados, levando-se em conta possíveis reingressos no intervalo de tempo de 2 anos como sendo o mesmo vínculo.
+
+Eliminando desses dados os alunos ativos e os alunos que evadiram no primeiro período temos o público de evasores que devemos estudar, aqueles para os quais alguma informação pode ser inferida e alguma ação talvez possa ser tomada.
+
+Contrariamente ao que se costuma indicar, que a evasão ocorre quase que exclusivamente no primeiro período, quando corrigimos os dados para os novos vínculos vemos que existe uma considerável evasão ocorrendo nos períodos subsequentes do vínculo do aluno, corroborando estudos anteriores com técnicas de análise de sobrevivência.
+
+Se considerarmos a população separada em coortes caracterizados pelo período de ingresso, podemos observar a evolução da evasão no gráfico abaixo. Os primeiros períodos são marcados pela desistência acentuada, entre o 3º e o 5º aparecem evasdões por desistência em um nível bem menor e nos próximos períodos a evasão diminui de maneira muito marcada para permitir a graduação dos alunos nos diversos periodos que se seguem.
+
+A ação de redução de evasão, nesse cenário, envolve a detecção precoce dos possíveis evasores por desistência para a criação de estratégias que possam influenciar essa população. 
+
+```{r, echo=FALSE, results='hold', fig.width=9, fig.height=9}
+coorteEvasores
+```
+
